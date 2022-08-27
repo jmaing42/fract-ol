@@ -1,6 +1,7 @@
 #include "fractol.h"
 
 #include <stdlib.h>
+#include <limits.h>
 #include <mlx.h>
 
 #include "ft_exit.h"
@@ -19,11 +20,12 @@
 #define KEY_S 1
 #define KEY_D 2
 
-static int	key_press(int keycode, void *param)
+static int	key_press(int keycode, t_fractol *param)
 {
 	(void)param;
 	if (keycode == KEY_ESC)
 		ft_exit(EXIT_SUCCESS);
+	fractol_render(param);
 	return (0);
 }
 
@@ -46,7 +48,11 @@ t_err	fractol_init_options(t_fractol_options *out)
 t_err	fractol_init(t_fractol *out, t_fractol_options *options)
 {
 	out->mlx_context = mlx_init();
-	if (!out->mlx_context)
+	if (
+		!out->mlx_context
+		|| options->window_h > INT_MAX
+		|| options->window_w > INT_MAX
+	)
 		return (true);
 	out->mlx_window = ft_assert_nonnull(mlx_new_window(
 				out->mlx_context,
@@ -61,7 +67,7 @@ t_err	fractol_init(t_fractol *out, t_fractol_options *options)
 				out->mlx_context,
 				options->window_w,
 				options->window_h));
-	mlx_hook(out->mlx_window, MLX_EVENT_ON_KEYDOWN, 0, &key_press, NULL);
+	mlx_hook(out->mlx_window, MLX_EVENT_ON_KEYDOWN, 0, &key_press, out);
 	mlx_hook(out->mlx_window, MLX_EVENT_ON_DESTROY, 0, &fractol_exit, NULL);
 	return (false);
 }
