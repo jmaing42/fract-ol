@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 17:29:15 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/08/28 17:41:02 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2022/08/28 19:37:01 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,24 @@ t_err		fractol_init_options(t_fractol_options *out);
 t_err		fractol_init(t_fractol *out, t_fractol_options *option);
 
 t_err		fractol_render(t_fractol *param);
-uint32_t	fractol_get_pixel(t_fractol *param, size_t x, size_t y);
+uint32_t	fractol_get_pixel(t_fractol *param, size_t x, size_t y, int endian);
 
 uint8_t		fractol_pixel_color(long double f);
 
 typedef union u_fractol_pixel
 {
-	struct s_fractol_pixel_color {
+	struct s_fractol_pixel_color_big {
 		uint8_t	a;
 		uint8_t	r;
 		uint8_t	g;
 		uint8_t	b;
-	}			color;
+	}			color_big;
+	struct s_fractol_pixel_color_little {
+		uint8_t	b;
+		uint8_t	g;
+		uint8_t	r;
+		uint8_t	a;
+	}			color_little;
 	uint32_t	pixel;
 }	t_fractol_pixel;
 

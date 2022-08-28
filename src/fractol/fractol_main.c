@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 17:29:20 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/08/28 17:34:57 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2022/08/28 19:50:26 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,19 @@ t_err	fractol_render(t_fractol *param)
 
 	ft_assert(bits_per_pixel == 32);
 	ft_assert(endian == 0);
-	ft_assert_nonnull(NULL);
+	ft_assert(sizeof(t_fractol_pixel) == 4);
 	i = -1;
 	while (++i < param->options->window_w * param->options->window_h)
 	{
 		data[
-			size_line / 32
+			size_line / 4
 			* (i / param->options->window_w)
 			+ (i % param->options->window_w)
 		] = fractol_get_pixel(
 				param,
+				i % param->options->window_w,
 				i / param->options->window_w,
-				i % param->options->window_w);
+				endian);
 	}
 	mlx_put_image_to_window(
 		param->mlx_context, param->mlx_window, param->image, 0, 0);
