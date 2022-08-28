@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 17:29:39 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/08/28 19:43:15 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2022/08/28 23:56:56 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ uint32_t	fractol_get_pixel(t_fractol *param, size_t x, size_t y, int endian)
 	if (endian)
 	{
 		pixel.color_big.a
-			= fractol_pixel_color(fractol_get_color_a(param, x, y));
+			= fractol_pixel_color(1L - fractol_get_color_a(param, x, y));
 		pixel.color_big.r
 			= fractol_pixel_color(fractol_get_color_r(param, x, y));
 		pixel.color_big.g
@@ -62,7 +62,7 @@ uint32_t	fractol_get_pixel(t_fractol *param, size_t x, size_t y, int endian)
 	else
 	{
 		pixel.color_little.a
-			= fractol_pixel_color(fractol_get_color_a(param, x, y));
+			= fractol_pixel_color(1L - fractol_get_color_a(param, x, y));
 		pixel.color_little.r
 			= fractol_pixel_color(fractol_get_color_r(param, x, y));
 		pixel.color_little.g
