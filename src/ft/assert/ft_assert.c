@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_assert.h                                        :+:      :+:    :+:   */
+/*   ft_assert.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 17:16:07 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/08/28 17:32:30 by Juyeong Maing    ###   ########.fr       */
+/*   Created: 2022/08/28 17:31:24 by Juyeong Maing     #+#    #+#             */
+/*   Updated: 2022/08/28 17:32:24 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_ASSERT_H
-# define FT_ASSERT_H
+#include "ft_assert.h"
 
-# include <stdbool.h>
+#include "ft_types.h"
+#include "ft_exit.h"
 
-void	ft_assert(bool must_be_true);
-void	*ft_assert_nonnull(void *value);
-
-#endif
+void	ft_assert(bool must_be_true)
+{
+	if (!must_be_true)
+		ft_exit(EXIT_FAILURE);
+}

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol_init.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/28 17:29:18 by Juyeong Maing     #+#    #+#             */
+/*   Updated: 2022/08/28 17:29:19 by Juyeong Maing    ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 #include <stdlib.h>
@@ -60,11 +72,7 @@ t_err	fractol_init(t_fractol *out, t_fractol_options *options)
 				options->window_w,
 				options->window_h,
 				options->title));
-	out->front = ft_assert_nonnull(mlx_new_image(
-				out->mlx_context,
-				options->window_w,
-				options->window_h));
-	out->back = ft_assert_nonnull(mlx_new_image(
+	out->image = ft_assert_nonnull(mlx_new_image(
 				out->mlx_context,
 				options->window_w,
 				options->window_h));

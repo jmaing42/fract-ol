@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol_main.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/28 17:29:20 by Juyeong Maing     #+#    #+#             */
+/*   Updated: 2022/08/28 17:34:57 by Juyeong Maing    ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
-#include <stdint.h>
 #include <stdlib.h>
 #include <limits.h>
 #include <mlx.h>
@@ -24,31 +35,25 @@ t_err	fractol_render(t_fractol *param)
 	int				size_line;
 	int				endian;
 	uint32_t *const	data = (uint32_t *)ft_assert_nonnull(mlx_get_data_addr(
-				param->back, &bits_per_pixel, &size_line, &endian));
+				param->image, &bits_per_pixel, &size_line, &endian));
 	size_t			i;
 
-	// /*
+	ft_assert(bits_per_pixel == 32);
+	ft_assert(endian == 0);
+	ft_assert_nonnull(NULL);
 	i = -1;
 	while (++i < param->options->window_w * param->options->window_h)
 	{
 		data[
-			size_line / (bits_per_pixel / CHAR_BIT)
+			size_line / 32
 			* (i / param->options->window_w)
 			+ (i % param->options->window_w)
-		] = 0x00FFFF00;
+		] = fractol_get_pixel(
+				param,
+				i / param->options->window_w,
+				i % param->options->window_w);
 	}
-	/*/
-	i = -1;
-	while (++i < 320)
-	{
-		data[
-			size_line / (bits_per_pixel / CHAR_BIT)
-			* i
-			+ 2 * i
-		] = 0x00FFFF00;
-	}
-	//*/
 	mlx_put_image_to_window(
-		param->mlx_context, param->mlx_window, param->back, 0, 0);
+		param->mlx_context, param->mlx_window, param->image, 0, 0);
 	return (false);
 }
