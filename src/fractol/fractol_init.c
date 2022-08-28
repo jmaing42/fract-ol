@@ -47,6 +47,7 @@ t_err	fractol_init_options(t_fractol_options *out)
 
 t_err	fractol_init(t_fractol *out, t_fractol_options *options)
 {
+	out->options = options;
 	out->mlx_context = mlx_init();
 	if (
 		!out->mlx_context

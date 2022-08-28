@@ -27,7 +27,7 @@ t_err	fractol_render(t_fractol *param)
 				param->back, &bits_per_pixel, &size_line, &endian));
 	size_t			i;
 
-	/*
+	// /*
 	i = -1;
 	while (++i < param->options->window_w * param->options->window_h)
 	{
