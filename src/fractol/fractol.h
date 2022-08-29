@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 17:29:15 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/08/28 19:37:01 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2022/08/29 23:51:57 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FRACTOL_H
 
 # include <stddef.h>
-# include <stdint.h>
 
 # include "ft_types.h"
 
@@ -33,29 +32,33 @@ typedef struct s_fractol
 	t_fractol_options	*options;
 }	t_fractol;
 
-t_err		fractol_init_options(t_fractol_options *out);
-t_err		fractol_init(t_fractol *out, t_fractol_options *option);
-
-t_err		fractol_render(t_fractol *param);
-uint32_t	fractol_get_pixel(t_fractol *param, size_t x, size_t y, int endian);
-
-uint8_t		fractol_pixel_color(long double f);
-
-typedef union u_fractol_pixel
+typedef struct s_fractol_pixel
 {
-	struct s_fractol_pixel_color_big {
-		uint8_t	a;
-		uint8_t	r;
-		uint8_t	g;
-		uint8_t	b;
-	}			color_big;
-	struct s_fractol_pixel_color_little {
-		uint8_t	b;
-		uint8_t	g;
-		uint8_t	r;
-		uint8_t	a;
-	}			color_little;
-	uint32_t	pixel;
+	long double	r;
+	long double	g;
+	long double	b;
 }	t_fractol_pixel;
+
+typedef struct s_mlx_image
+{
+	int				bits_per_pixel;
+	int				size_of_line;
+	int				endian;
+	unsigned char	*data;
+}	t_mlx_image;
+
+t_err			fractol_init_options(t_fractol_options *out);
+t_err			fractol_init(t_fractol *out, t_fractol_options *option);
+t_err			fractol_render(t_fractol *param);
+t_err			fractol_render_pixel(
+					t_fractol *param,
+					t_mlx_image *image,
+					size_t x,
+					size_t y);
+unsigned char	fractol_normalize_pixel_color(long double f);
+t_fractol_pixel	fractol_get_pixel(
+					t_fractol *param,
+					size_t x,
+					size_t y);
 
 #endif
