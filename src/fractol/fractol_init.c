@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 17:29:18 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/08/28 17:29:19 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2022/08/31 02:07:43 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,7 @@ t_err	fractol_init(t_fractol *out, t_fractol_options *options)
 				options->window_h));
 	mlx_hook(out->mlx_window, MLX_EVENT_ON_KEYDOWN, 0, &key_press, out);
 	mlx_hook(out->mlx_window, MLX_EVENT_ON_DESTROY, 0, &fractol_exit, NULL);
+	out->center = fractol_position(0.0L, 0.0L);
+	out->size = 4.2L / options->window_w;
 	return (false);
 }

@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 17:29:15 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/08/30 00:39:20 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2022/08/31 01:57:32 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,20 @@ typedef struct s_fractol_options
 	char	*title;
 }	t_fractol_options;
 
+typedef struct s_fractol_position
+{
+	long double	x;
+	long double	y;
+}	t_fractol_position;
+
 typedef struct s_fractol
 {
 	void				*mlx_context;
 	void				*mlx_window;
 	void				*image;
 	t_fractol_options	*options;
+	t_fractol_position	center;
+	long double			size;
 }	t_fractol;
 
 typedef struct s_fractol_pixel
@@ -38,12 +46,6 @@ typedef struct s_fractol_pixel
 	long double	g;
 	long double	b;
 }	t_fractol_pixel;
-
-typedef struct s_fractol_position
-{
-	long double	x;
-	long double	y;
-}	t_fractol_position;
 
 typedef struct s_mlx_image
 {
@@ -64,17 +66,17 @@ t_err				fractol_render_pixel(
 						t_mlx_image *image,
 						size_t x,
 						size_t y);
-t_fractol_position	fractol_get_pixel_position(
-						t_fractol *param,
-						size_t x,
-						size_t y);
-t_fractol_pixel		fractol_get_color(
-						t_fractol_position position);
+t_fractol_position	fractol_position(
+						long double x,
+						long double y);
 unsigned char		fractol_normalize_pixel_color(
 						long double f);
 t_fractol_pixel		fractol_get_pixel(
 						t_fractol *param,
 						size_t x,
 						size_t y);
+t_fractol_pixel		fractol_get_color(
+						t_fractol *param,
+						t_fractol_position position);
 
 #endif

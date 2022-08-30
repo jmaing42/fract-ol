@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol_get_pixel.c                                :+:      :+:    :+:   */
+/*   fractol_position.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/28 17:29:39 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/08/31 02:06:11 by Juyeong Maing    ###   ########.fr       */
+/*   Created: 2022/08/31 01:43:02 by Juyeong Maing     #+#    #+#             */
+/*   Updated: 2022/08/31 01:43:53 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-t_fractol_pixel	fractol_get_pixel(t_fractol *param, size_t x, size_t y)
+t_fractol_position	fractol_position(
+	long double x,
+	long double y
+)
 {
-	const long double			x_from_center
-		= param->options->window_w * -0.5L + x;
-	const long double			y_from_center
-		= param->options->window_h * -0.5L + y;
-	const t_fractol_position	position
-		= fractol_position(
-			x_from_center * param->size,
-			y_from_center * param->size);
+	const t_fractol_position	result = {x, y};
 
-	return (fractol_get_color(param, position));
+	return (result);
 }

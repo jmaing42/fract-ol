@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 00:21:44 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/08/30 00:31:36 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2022/08/31 01:59:34 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@
 
 # include "ft_math_complex.h"
 
-size_t	fractol_mandelbrot(t_ft_math_complex c, size_t	limit);
+size_t	fractol_mandelbrot(t_ft_math_complex c, size_t limit);
 
 #endif
