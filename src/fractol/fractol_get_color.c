@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 01:58:08 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/08/31 21:30:28 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2022/08/31 23:04:58 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static t_fractol_pixel	to_pixel(size_t size, size_t limit)
 	t_fractol_pixel		current;
 	t_fractol_pixel		next;
 	t_fractol_pixel		result;
-	const long double	alpha = 1.0L / limit * size;
+	const long double	alpha
+		= 1.0L - (1.0L - 1.0L / limit * size) * (1.0L - 1.0L / limit * size);
 
 	if (size == limit)
 		return (g_black);
