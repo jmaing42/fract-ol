@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 01:58:08 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/08/31 02:06:22 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2022/08/31 21:05:06 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "fractol_mandelbrot.h"
 #include "ft_math_complex.h"
 
-#define LIMIT 800
+#define LIMIT 20
 
 static t_fractol_pixel	to_pixel(size_t size, size_t limit)
 {
