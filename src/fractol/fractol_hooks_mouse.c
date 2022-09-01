@@ -6,13 +6,11 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 22:50:46 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/09/01 23:45:13 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2022/09/01 23:52:53 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_hooks.h"
-
-#include <stdio.h>
 
 static void	zoom(t_fractol *param, long double factor, int x, int y)
 {
@@ -31,7 +29,6 @@ static void	zoom(t_fractol *param, long double factor, int x, int y)
 
 	param->size *= factor;
 	param->center = new_center;
-	printf("current position: (%Lf, %Lf)\n", param->center.x, param->center.y);
 }
 
 int	fractol_hooks_mouse(int button, int x, int y, t_fractol *param)
