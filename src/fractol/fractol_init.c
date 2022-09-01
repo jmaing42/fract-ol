@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 17:29:18 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/09/01 09:24:09 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2022/09/01 09:24:49 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	mouse(int button, int x, int y, t_fractol *param)
 		param->center.x
 			+= (x - (int)param->options->window_w / 2) / param->size;
 		param->center.x
-			+= (y - (int)param->options->window_w / 2) / param->size;
+			+= (y - (int)param->options->window_h / 2) / param->size;
 		printf("%d, %d\n", x, y);
 		fractol_render(param);
 	}
