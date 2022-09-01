@@ -12,7 +12,7 @@
 
 #include "fractol.h"
 
-#include "fractol_mandelbrot.h"
+#include "fractol_julia.h"
 #include "ft_math_complex.h"
 
 #define LIMIT 42
@@ -61,8 +61,9 @@ t_fractol_pixel	fractol_get_color(t_fractol *param, t_fractol_position position)
 	(void)param;
 	return (
 		to_pixel(
-			fractol_mandelbrot(
+			fractol_julia(
 				ft_math_complex(position.x, position.y),
+				ft_math_complex(-1.0L, 0.65L),
 				LIMIT
 			),
 			LIMIT
