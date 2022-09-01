@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 17:29:18 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/08/31 02:07:43 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2022/09/01 09:03:15 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,12 @@
 
 #define MLX_EVENT_ON_KEYDOWN 2
 #define MLX_EVENT_ON_KEYUP 3
+#define MLX_EVENT_ON_MOUSE 4
+#define MLX_EVENT_ON_MOUSE_MOVE 6
 #define MLX_EVENT_ON_DESTROY 17
+
+#define MLX_BUTTON_SCROLL_UP 4
+#define MLX_BUTTON_SCROLL_DOWN 5
 
 #define KEY_ESC 53
 #define KEY_Q 12
@@ -46,6 +51,32 @@ static int	fractol_exit(int unused, void *param)
 	(void)unused;
 	(void)param;
 	ft_exit(EXIT_SUCCESS);
+	return (0);
+}
+
+#include <stdio.h>
+
+int	mouse_move(int x, int y, t_fractol *param)
+{
+	(void)param;
+	printf("(x, y) = (%d, %d)\n", x, y);
+	return (0);
+}
+
+int	mouse(int button, int x, int y, t_fractol *param)
+{
+	(void)x;
+	(void)y;
+	if (button == MLX_BUTTON_SCROLL_UP)
+	{
+		param->size *= 1.1;
+		fractol_render(param);
+	}
+	else if (button == MLX_BUTTON_SCROLL_DOWN)
+	{
+		param->size /= 1.1;
+		fractol_render(param);
+	}
 	return (0);
 }
 
@@ -78,6 +109,8 @@ t_err	fractol_init(t_fractol *out, t_fractol_options *options)
 				options->window_h));
 	mlx_hook(out->mlx_window, MLX_EVENT_ON_KEYDOWN, 0, &key_press, out);
 	mlx_hook(out->mlx_window, MLX_EVENT_ON_DESTROY, 0, &fractol_exit, NULL);
+	mlx_hook(out->mlx_window, MLX_EVENT_ON_MOUSE, 0, mouse, out);
+	mlx_hook(out->mlx_window, MLX_EVENT_ON_MOUSE_MOVE, 0, mouse_move, out);
 	out->center = fractol_position(0.0L, 0.0L);
 	out->size = 4.2L / options->window_w;
 	return (false);
