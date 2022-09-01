@@ -57,8 +57,6 @@ static int	fractol_exit(int unused, void *param)
 	return (0);
 }
 
-#include <stdio.h>
-
 int	mouse(int button, int x, int y, t_fractol *param)
 {
 	(void)x;
@@ -79,8 +77,6 @@ int	mouse(int button, int x, int y, t_fractol *param)
 			+= (x - (int)param->options->window_w / 2) * param->size;
 		param->center.y
 			+= (y - (int)param->options->window_h / 2) * param->size;
-		printf("%Lf, %Lf\n", param->center.x, param->center.y);
-		printf("%d, %d\n", x, y);
 		fractol_render(param);
 	}
 	return (0);

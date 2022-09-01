@@ -15,7 +15,7 @@
 #include "fractol_julia.h"
 #include "ft_math_complex.h"
 
-#define LIMIT 42
+#define LIMIT 80
 #define STEPS 3
 
 static const t_fractol_pixel	g_black = {0.0L, 0.0L, 0.0L};
