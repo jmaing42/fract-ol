@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 22:44:45 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/09/01 23:51:48 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2022/09/02 07:23:02 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@
 # define MLX_KEY_W 13
 # define MLX_KEY_E 14
 # define MLX_KEY_R 15
+# define MLX_KEY_ARROW_LEFT 123
+# define MLX_KEY_ARROW_RIGHT 124
+# define MLX_KEY_ARROW_DOWN 125
+# define MLX_KEY_ARROW_UP 126
 # define MLX_KEY_ESC 53
 
 # define MLX_BUTTON_LEFT 1
