@@ -76,9 +76,10 @@ int	mouse(int button, int x, int y, t_fractol *param)
 	else if (button == MLX_BUTTON_LEFT)
 	{
 		param->center.x
-			+= (x - (int)param->options->window_w / 2) / param->size;
-		param->center.x
-			+= (y - (int)param->options->window_h / 2) / param->size;
+			+= (x - (int)param->options->window_w / 2) * param->size;
+		param->center.y
+			+= (y - (int)param->options->window_h / 2) * param->size;
+		printf("%Lf, %Lf\n", param->center.x, param->center.y);
 		printf("%d, %d\n", x, y);
 		fractol_render(param);
 	}
