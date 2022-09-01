@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 22:44:45 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/09/01 22:49:22 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2022/09/01 23:51:48 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define MLX_BUTTON_SCROLL_UP 4
 # define MLX_BUTTON_SCROLL_DOWN 5
 
+int	fractol_hooks_init(void *param);
 int	fractol_hooks_exit(int unused, void *param);
 int	fractol_hooks_key(int keycode, t_fractol *param);
 int	fractol_hooks_mouse(int button, int x, int y, t_fractol *param);

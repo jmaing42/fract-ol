@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 17:29:18 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/09/01 22:52:57 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2022/09/01 23:51:08 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ t_err	fractol_init(t_fractol *out, t_fractol_options *options)
 				out->mlx_context,
 				options->window_w,
 				options->window_h));
+	mlx_expose_hook(out->mlx_window, &fractol_hooks_init, out);
 	mlx_hook(out->mlx_window, MLX_EVENT_ON_DESTROY, 0, &fractol_hooks_exit, 0);
 	mlx_hook(out->mlx_window, MLX_EVENT_ON_KEYDOWN, 0, &fractol_hooks_key, out);
 	mlx_hook(out->mlx_window, MLX_EVENT_ON_MOUSE, 0, &fractol_hooks_mouse, out);
