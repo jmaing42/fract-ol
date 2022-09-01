@@ -6,13 +6,13 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 01:58:08 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/08/31 23:04:58 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2022/09/02 01:27:35 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-#include "fractol_julia.h"
+#include "fractol_jmaing_siot.h"
 #include "ft_math_complex.h"
 
 #define LIMIT 80
@@ -61,9 +61,8 @@ t_fractol_pixel	fractol_get_color(t_fractol *param, t_fractol_position position)
 	(void)param;
 	return (
 		to_pixel(
-			fractol_julia(
-				ft_math_complex(position.x, position.y),
-				ft_math_complex(-1.0L, 0.65L),
+			fractol_jmaing_siot(
+				position,
 				LIMIT
 			),
 			LIMIT
