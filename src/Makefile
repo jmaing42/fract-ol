@@ -89,7 +89,7 @@ dev: compile_commands.json
 	$Qfind . -type d -name test | xargs -L1 -I {} make -C {} dev
 .PHONY: run
 run: $(OBJ_DIR)/$(NAME)$(SUFFIX).exe
-	$QDYLD_LIBRARY_PATH=.cache/mlx/minilibx_opengl_20191021 ./$<
+	$QDYLD_LIBRARY_PATH=.cache/mlx/minilibx_opengl_20191021 ./$< $(ARGS)
 
 # dependencies
 -include $(patsubst ./%.c,$(OBJ_DIR)/%$(SUFFIX).d,$(SRCS))
