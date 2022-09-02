@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol_main.c                                     :+:      :+:    :+:   */
+/*   fractol_util.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/28 17:29:20 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/09/03 01:06:36 by Juyeong Maing    ###   ########.fr       */
+/*   Created: 2022/09/03 00:38:53 by Juyeong Maing     #+#    #+#             */
+/*   Updated: 2022/09/03 00:41:24 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#ifndef FRACTOL_UTIL_H
+# define FRACTOL_UTIL_H
 
-#include <stdlib.h>
-#include <mlx.h>
+# include "fractol.h"
 
-int	main(int argc, char **argv)
-{
-	t_fractol			fractol;
-	t_fractol_options	options;
+t_fractol_pixel	fractol_util_get_color(size_t size, size_t limit);
 
-	if (
-		fractol_init_options(&options, argc, argv)
-		|| fractol_init(&fractol, &options)
-	)
-		return (EXIT_FAILURE);
-	mlx_loop(fractol.mlx_context);
-	return (EXIT_SUCCESS);
-}
+#endif

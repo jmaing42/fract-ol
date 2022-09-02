@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol_get_color.c                                :+:      :+:    :+:   */
+/*   fractol_util_get_color.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 01:58:08 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/09/02 01:27:35 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2022/09/03 00:47:58 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "fractol_util.h"
 
-#include "fractol_jmaing_siot.h"
 #include "ft_math_complex.h"
 
-#define LIMIT 80
 #define STEPS 3
 
 static const t_fractol_pixel	g_black = {0.0L, 0.0L, 0.0L};
@@ -29,7 +27,7 @@ static const t_fractol_pixel	g_colors[6] = {
 {1.0L, 0.0L, 1.0L},
 };
 
-static t_fractol_pixel	to_pixel(size_t size, size_t limit)
+t_fractol_pixel	fractol_util_get_color(size_t size, size_t limit)
 {
 	t_fractol_pixel		current;
 	t_fractol_pixel		next;
@@ -54,18 +52,4 @@ static t_fractol_pixel	to_pixel(size_t size, size_t limit)
 	result.b = (current.b * (STEPS - size % STEPS)
 			+ next.b * (size % STEPS)) / STEPS;
 	return (result);
-}
-
-t_fractol_pixel	fractol_get_color(t_fractol *param, t_fractol_position position)
-{
-	(void)param;
-	return (
-		to_pixel(
-			fractol_jmaing_siot(
-				position,
-				LIMIT
-			),
-			LIMIT
-		)
-	);
 }

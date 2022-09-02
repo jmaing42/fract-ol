@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 17:29:15 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/09/03 00:31:26 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2022/09/03 01:09:42 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 # include "ft_types.h"
 # include "fto_disposable.h"
 
+typedef struct s_fractol_position
+{
+	long double	x;
+	long double	y;
+}	t_fractol_position;
+
 typedef struct s_fractol_options
 {
 	size_t					window_w;
@@ -25,21 +31,13 @@ typedef struct s_fractol_options
 	char					*title;
 	struct s_fractol_pixel	(*get_pixel)(
 			struct s_fractol_options *options,
-			long double x,
-			long double y);
+			t_fractol_position position);
 	t_fto_disposable		*extra;
 }	t_fractol_options;
 
 typedef struct s_fractol_pixel	(*t_fractol_options_get_pixel)(
 									t_fractol_options *options,
-									long double x,
-									long double y);
-
-typedef struct s_fractol_position
-{
-	long double	x;
-	long double	y;
-}	t_fractol_position;
+									t_fractol_position position);
 
 typedef struct s_fractol
 {
@@ -67,7 +65,9 @@ typedef struct s_mlx_image
 }	t_mlx_image;
 
 t_err				fractol_init_options(
-						t_fractol_options *out);
+						t_fractol_options *out,
+						size_t argc,
+						char **argv);
 t_err				fractol_init(
 						t_fractol *out, t_fractol_options *option);
 t_err				fractol_render(
@@ -82,12 +82,5 @@ t_fractol_position	fractol_position(
 						long double y);
 unsigned char		fractol_normalize_pixel_color(
 						long double f);
-t_fractol_pixel		fractol_get_pixel(
-						t_fractol *param,
-						size_t x,
-						size_t y);
-t_fractol_pixel		fractol_get_color(
-						t_fractol *param,
-						t_fractol_position position);
 
 #endif

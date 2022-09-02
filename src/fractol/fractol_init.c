@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 17:29:18 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/09/01 23:51:08 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2022/09/03 01:02:02 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,6 @@
 #include "ft_assert.h"
 
 #include "fractol_hooks.h"
-
-t_err	fractol_init_options(t_fractol_options *out)
-{
-	out->title = "fract-ol";
-	out->window_w = 640;
-	out->window_h = 480;
-	return (false);
-}
 
 t_err	fractol_init(t_fractol *out, t_fractol_options *options)
 {

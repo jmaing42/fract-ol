@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol_get_pixel.c                                :+:      :+:    :+:   */
+/*   fractol_init_options.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/28 17:29:39 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/08/31 02:06:11 by Juyeong Maing    ###   ########.fr       */
+/*   Created: 2022/09/03 01:02:16 by Juyeong Maing     #+#    #+#             */
+/*   Updated: 2022/09/03 01:12:23 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-t_fractol_pixel	fractol_get_pixel(t_fractol *param, size_t x, size_t y)
-{
-	const long double			x_from_center
-		= param->options->window_w * -0.5L + x;
-	const long double			y_from_center
-		= param->options->window_h * -0.5L + y;
-	const t_fractol_position	position
-		= fractol_position(
-			param->center.x + x_from_center * param->size,
-			param->center.y + y_from_center * param->size);
+#include "fractol_julia.h"
 
-	return (fractol_get_color(param, position));
+static t_err	init_rest(t_fractol_options *out, size_t argc, char **argv)
+{
+	return (fractol_julia_init(&out->get_pixel, &out->extra, argc, argv));
+}
+
+t_err	fractol_init_options(t_fractol_options *out, size_t argc, char **argv)
+{
+	out->title = argv[0];
+	out->window_w = 640;
+	out->window_h = 480;
+	return (init_rest(out, argc + 1, argv + 1));
 }

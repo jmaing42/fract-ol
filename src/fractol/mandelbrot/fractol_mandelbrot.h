@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 00:21:44 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/09/03 00:32:50 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2022/09/03 00:42:15 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_fractol_mandelbrot
 
 t_err	fractol_mandelbrot_init(
 			t_fractol_options_get_pixel *out_get_pixel,
-			t_fto_disposable *out_extra,
+			t_fto_disposable **out_extra,
 			size_t argc,
 			char **argv);
 
