@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 23:52:04 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/09/01 00:05:32 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2022/09/03 00:22:40 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 typedef struct s_fto_disposable
 {
-	struct s_fto_disposable_vtable	*v;
+	const struct s_fto_disposable_vtable	*v;
 }	t_fto_disposable;
 
 typedef void	(*t_fto_disposable_v_dispose)(t_fto_disposable *disposable);

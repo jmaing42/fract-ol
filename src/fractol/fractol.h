@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 17:29:15 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/08/31 01:57:32 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2022/09/03 00:31:26 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,24 @@
 # include <stddef.h>
 
 # include "ft_types.h"
+# include "fto_disposable.h"
 
 typedef struct s_fractol_options
 {
-	size_t	window_w;
-	size_t	window_h;
-	char	*title;
+	size_t					window_w;
+	size_t					window_h;
+	char					*title;
+	struct s_fractol_pixel	(*get_pixel)(
+			struct s_fractol_options *options,
+			long double x,
+			long double y);
+	t_fto_disposable		*extra;
 }	t_fractol_options;
+
+typedef struct s_fractol_pixel	(*t_fractol_options_get_pixel)(
+									t_fractol_options *options,
+									long double x,
+									long double y);
 
 typedef struct s_fractol_position
 {
