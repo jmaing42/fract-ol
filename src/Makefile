@@ -14,6 +14,7 @@ LDFLAGS += -L.cache/mlx/minilibx_opengl_20191021 -lmlx -framework OpenGL -framew
 
 SRCS_FRACTOL := $(shell find . -name "fractol_*.c" | grep -v /test/ | xargs)
 SRCS_LIBFT := $(shell find . -name "ft_*.c" | grep -v /test/ | xargs)
+SRCS_LIBFTO := $(shell find . -name "fto_*.c" | grep -v /test/ | xargs)
 
 NAME := fract-ol
 
@@ -74,7 +75,8 @@ LDFLAGS += $(if $(SANITIZER),-fsanitize=$(SANITIZER),)
 	$Q$(CC) $(CFLAGS) -MJ $@.part.json -MMD -o $@ -c $<
 
 .cache/libft$(SUFFIX).a: $(patsubst ./%.c,.cache/%$(SUFFIX).o,$(SRCS_LIBFT))
-.cache/$(NAME)$(SUFFIX).exe: $(patsubst ./%.c,.cache/%$(SUFFIX).o,$(SRCS_FRACTOL)) .cache/libft$(SUFFIX).a | .cache/mlx/minilibx_opengl_20191021/libmlx.dylib
+.cache/libfto$(SUFFIX).a: $(patsubst ./%.c,.cache/%$(SUFFIX).o,$(SRCS_LIBFTO))
+.cache/$(NAME)$(SUFFIX).exe: $(patsubst ./%.c,.cache/%$(SUFFIX).o,$(SRCS_FRACTOL)) .cache/libft$(SUFFIX).a .cache/libfto$(SUFFIX).a | .cache/mlx/minilibx_opengl_20191021/libmlx.dylib
 $(EXECUTABLE_TARGETS): %: .cache/%$(SUFFIX).exe
 	$Qcp $< $@
 .PHONY: $(EXECUTABLE_TARGETS)
