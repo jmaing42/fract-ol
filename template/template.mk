@@ -45,8 +45,8 @@ re:
 	(printf ".*\n*.o\n\n" && echo "$(EXECUTABLE_TARGETS) $(LIBRARY_TARGETS)" | xargs -n 1 echo) > $@
 
 
-$(EXECUTABLE_TARGETS):
-	$(CC) $(LDFLAGS) -o $@ $^ $(LIBRARY_TARGETS)
+$(EXECUTABLE_TARGETS): $(LIBRARY_TARGETS)
+	$(CC) $(LDFLAGS) -o $@ $^
 $(LIBRARY_TARGETS):
 	$(AR) $(ARFLAGS) $@ $^
 
