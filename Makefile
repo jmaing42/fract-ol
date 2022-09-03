@@ -47,6 +47,7 @@ publish:
 
 .PHONY: pre_dev
 pre_dev:
+	$(Q2)$(MAKE) -C src dev
 	$(Q2)find src -type d -name test | xargs -L1 -I {} $(MAKE) -C {} dev
 .PHONY: compile_commands.json
 compile_commands.json: pre_dev
