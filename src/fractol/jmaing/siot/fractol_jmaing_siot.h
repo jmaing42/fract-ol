@@ -19,4 +19,10 @@
 
 size_t	fractol_jmaing_siot(t_fractol_position c, size_t limit);
 
+t_err	fractol_jmaing_siot_init(
+			t_fractol_options_get_pixel *out_get_pixel,
+			t_fto_disposable **out_extra,
+			size_t argc,
+			char **argv);
+
 #endif
