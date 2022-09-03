@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 11:49:15 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/09/03 11:58:53 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2022/09/03 16:37:22 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ t_err	ft_types_convert_strict_string_to_int(
 			int *out);
 t_err	ft_types_convert_strict_string_to_long_double(
 			const char *str,
-			int *out);
+			long double *out);
 
 #endif
