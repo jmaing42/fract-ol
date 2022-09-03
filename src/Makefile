@@ -1,5 +1,5 @@
 Q := $(if $(filter 1,$(V) $(VERBOSE)),,@)
-MAKE := $(MAKE) $(if $(filter 1,$(V) $(VERBOSE)),,--no-print-directory) $(if $(filter 1,$(NO_ADDITIONAL_J)),,-j $(shell sh build/nproc.sh))
+MAKE := $(MAKE) $(if $(filter 1,$(V) $(VERBOSE)),,--no-print-directory) $(if $(filter 1,$(NO_ADDITIONAL_J)),,-j $(shell sh build/script/nproc.sh))
 
 CC := clang
 CCLD := clang
@@ -12,8 +12,6 @@ CFLAGS := -Wall -Wextra -Werror -std=c99 -pedantic $(CPPFLAGS)
 CFLAGS += -I.cache/mlx/minilibx_opengl_20191021
 LDFLAGS += -L.cache/mlx/minilibx_opengl_20191021 -lmlx -framework OpenGL -framework AppKit
 
-OBJ_DIR := .cache
-
 SRCS_FRACTOL := $(shell find . -name "fractol_*.c" | grep -v /test/ | xargs)
 SRCS_LIBFT := $(shell find . -name "ft_*.c" | grep -v /test/ | xargs)
 
@@ -24,7 +22,7 @@ EXECUTABLE_TARGETS := $(NAME)
 all: $(NAME)
 bonus: all
 clean:
-	$Qrm -rf $(OBJ_DIR)
+	$Qfind . -type d -name .cache | xargs rm -rf
 fclean:
 	$Q$(MAKE) clean
 	$Qrm -f $(EXECUTABLE_TARGETS)
@@ -65,19 +63,19 @@ SUFFIX := .$(TARGET).$(PROFILE)$(if $(SANITIZER),.$(SANITIZER))
 CFLAGS += $(if $(SANITIZER),-fsanitize=$(SANITIZER),)
 LDFLAGS += $(if $(SANITIZER),-fsanitize=$(SANITIZER),)
 
-$(OBJ_DIR)/%.a:
+.cache/%.a:
 	$Qmkdir -p $(@D)
 	$Q$(AR) $(ARFLAGS) $@ $^
-$(OBJ_DIR)/%.exe:
+.cache/%.exe:
 	$Qmkdir -p $(@D)
 	$Q$(CCLD) $(LDFLAGS) -o $@ $^
-$(OBJ_DIR)/%$(SUFFIX).o: %.c | .cache/mlx
+.cache/%$(SUFFIX).o: %.c | .cache/mlx
 	$Qmkdir -p $(@D)
 	$Q$(CC) $(CFLAGS) -MJ $@.part.json -MMD -o $@ -c $<
 
-$(OBJ_DIR)/libft$(SUFFIX).a: $(patsubst ./%.c,$(OBJ_DIR)/%$(SUFFIX).o,$(SRCS_LIBFT))
-$(OBJ_DIR)/$(NAME)$(SUFFIX).exe: $(patsubst ./%.c,$(OBJ_DIR)/%$(SUFFIX).o,$(SRCS_FRACTOL)) $(OBJ_DIR)/libft$(SUFFIX).a | .cache/mlx/minilibx_opengl_20191021/libmlx.dylib
-$(EXECUTABLE_TARGETS): %: $(OBJ_DIR)/%$(SUFFIX).exe
+.cache/libft$(SUFFIX).a: $(patsubst ./%.c,.cache/%$(SUFFIX).o,$(SRCS_LIBFT))
+.cache/$(NAME)$(SUFFIX).exe: $(patsubst ./%.c,.cache/%$(SUFFIX).o,$(SRCS_FRACTOL)) .cache/libft$(SUFFIX).a | .cache/mlx/minilibx_opengl_20191021/libmlx.dylib
+$(EXECUTABLE_TARGETS): %: .cache/%$(SUFFIX).exe
 	$Qcp $< $@
 .PHONY: $(EXECUTABLE_TARGETS)
 
@@ -88,8 +86,8 @@ compile_commands.json:
 dev: compile_commands.json
 	$Qfind . -type d -name test | xargs -L1 -I {} make -C {} dev
 .PHONY: run
-run: $(OBJ_DIR)/$(NAME)$(SUFFIX).exe
+run: .cache/$(NAME)$(SUFFIX).exe
 	$QDYLD_LIBRARY_PATH=.cache/mlx/minilibx_opengl_20191021 ./$< $(ARGS)
 
 # dependencies
--include $(patsubst ./%.c,$(OBJ_DIR)/%$(SUFFIX).d,$(SRCS))
+-include $(patsubst ./%.c,.cache/%$(SUFFIX).d,$(SRCS))

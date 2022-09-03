@@ -1,0 +1,9 @@
+    {
+      "label": "build unit test strict_atoi",
+      "type": "shell",
+      "command": "/Applications/Xcode.app/Contents/Developer/usr/bin/make --no-print-directory build",
+      "options": {
+        "cwd": "/Users/user/workspace/42/push_swap/src/ft/test/strict_atoi",
+      },
+      "problemMatcher": ["cc"]
+    },

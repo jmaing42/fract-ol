@@ -1,0 +1,8 @@
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug unit test strict_atoi",
+      "program": "/Users/user/workspace/42/push_swap/src/ft/test/strict_atoi/.cache/test.exe",
+      "cwd": "/Users/user/workspace/42/push_swap/src/ft/test/strict_atoi",
+      "preLaunchTask": "build unit test strict_atoi",
+    },
