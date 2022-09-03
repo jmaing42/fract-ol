@@ -1,7 +1,9 @@
-*.tmp
 tmp
-.cache
+.*
+!.gitignore
+!.editorconfig
 fract-ol
 compile_commands.json
+*.part.json
 .vscode/launch.json
 .vscode/tasks.json
