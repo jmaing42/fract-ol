@@ -3,3 +3,5 @@ tmp
 .cache
 fract-ol
 compile_commands.json
+.vscode/launch.json
+.vscode/tasks.json

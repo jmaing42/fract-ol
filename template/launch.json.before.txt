@@ -9,5 +9,3 @@
       "cwd": "${workspaceFolder}/src",
       "preLaunchTask": "build (debug)",
     },
-  ],
-}
