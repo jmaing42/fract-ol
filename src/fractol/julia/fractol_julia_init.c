@@ -6,13 +6,15 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 00:46:22 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/09/03 01:27:42 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2022/09/03 17:18:34 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol_julia.h"
 
 #include <stdlib.h>
+
+#include "ft_types_convert_strict.h"
 
 #include "fractol_util.h"
 
@@ -44,6 +46,22 @@ static t_fractol_pixel	get_pixel(
 	);
 }
 
+static long double	parse_if_or_default(
+	bool condition,
+	char *const *p_str,
+	long double fallback
+)
+{
+	long double	result;
+
+	if (
+		condition
+		&& !ft_types_convert_strict_string_to_long_double(*p_str, &result)
+	)
+		return (result);
+	return (fallback);
+}
+
 t_err	fractol_julia_init(
 	t_fractol_options_get_pixel *out_get_pixel,
 	t_fto_disposable **out_extra,
@@ -53,12 +71,13 @@ t_err	fractol_julia_init(
 {
 	t_fractol_julia *const	options = malloc(sizeof(t_fractol_julia));
 
-	(void)argc;
-	(void)argv;
 	if (!options)
 		return (true);
 	options->super.v = &g_v;
-	options->z = ft_math_complex(-1.0L, 0.65L);
+	options->z
+		= ft_math_complex(
+			parse_if_or_default(argc > 1, &argv[1], -1.0L),
+			parse_if_or_default(argc > 2, &argv[2], 0.65L));
 	*out_get_pixel = &get_pixel;
 	*out_extra = (t_fto_disposable *)options;
 	return (false);
