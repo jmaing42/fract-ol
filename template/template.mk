@@ -9,7 +9,7 @@ OBJS = $(OBJS_FRACTOL) $(OBJS_LIBFT) $(OBJS_LIBFTO)
 
 OTHER_USEFUL_FILES = .editorconfig .gitignore
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -O
 LDFLAGS := -lmlx -framework OpenGL -framework AppKit
 ARFLAGS := cr
 
