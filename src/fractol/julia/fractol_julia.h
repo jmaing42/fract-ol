@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 23:01:17 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/09/03 00:51:17 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2022/09/11 17:09:51 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t	fractol_julia(t_ft_math_complex z, t_ft_math_complex c, size_t limit);
 typedef struct s_fractol_julia
 {
 	t_fto_disposable	super;
-	t_ft_math_complex	z;
+	t_ft_math_complex	c;
 }	t_fractol_julia;
 
 t_err	fractol_julia_init(

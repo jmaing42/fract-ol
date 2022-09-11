@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 00:46:22 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/09/03 17:18:34 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2022/09/11 17:09:37 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ static t_fractol_pixel	get_pixel(
 	return (
 		fractol_util_get_color(
 			fractol_julia(
-				((t_fractol_julia *)options->extra)->z,
 				ft_math_complex(position.x, position.y),
+				((t_fractol_julia *)options->extra)->c,
 				LIMIT
 			),
 			LIMIT
@@ -74,7 +74,7 @@ t_err	fractol_julia_init(
 	if (!options)
 		return (true);
 	options->super.v = &g_v;
-	options->z
+	options->c
 		= ft_math_complex(
 			parse_if_or_default(argc > 1, &argv[1], -1.0L),
 			parse_if_or_default(argc > 2, &argv[2], 0.65L));
