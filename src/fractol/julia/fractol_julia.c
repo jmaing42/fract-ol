@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 23:01:12 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/09/01 23:01:14 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2022/10/19 15:34:20 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 size_t	fractol_julia(t_ft_math_complex z, t_ft_math_complex c, size_t limit)
 {
-	size_t				n;
+	size_t	n;
 
 	n = -1;
 	while (++n < limit && ft_math_complex_abs(z) <= 2L)
