@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol_mandelbrot.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
+/*   By: jmaing <jmaing@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 00:21:44 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/08/31 02:15:06 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2024/03/11 22:17:37 by jmaing           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ size_t	fractol_mandelbrot(t_ft_math_complex c, size_t limit)
 
 	z = ft_math_complex(0, 0);
 	n = -1;
-	while (++n < limit && ft_math_complex_abs(z) <= 2L)
+	while (++n < limit && ft_math_complex_abs_square(z) <= 4.0L)
 		z = ft_math_complex_add(ft_math_complex_multiply(z, z), c);
 	return (n);
 }

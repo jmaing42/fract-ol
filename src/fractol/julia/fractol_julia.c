@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol_julia.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
+/*   By: jmaing <jmaing@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 23:01:12 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/10/19 15:34:20 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2024/03/11 22:17:28 by jmaing           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ size_t	fractol_julia(t_ft_math_complex z, t_ft_math_complex c, size_t limit)
 	size_t	n;
 
 	n = -1;
-	while (++n < limit && ft_math_complex_abs(z) <= 2L)
+	while (++n < limit && ft_math_complex_abs_square(z) <= 4.0L)
 		z = ft_math_complex_add(ft_math_complex_multiply(z, z), c);
 	return (n);
 }

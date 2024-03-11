@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_math_complex.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
+/*   By: jmaing <jmaing@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 00:22:59 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/08/30 00:28:11 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2024/03/11 22:17:02 by jmaing           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_ft_math_complex	ft_math_complex(
 						long double real,
 						long double imaginary);
 
-long double			ft_math_complex_abs(
+long double			ft_math_complex_abs_square(
 						t_ft_math_complex c);
 
 t_ft_math_complex	ft_math_complex_add(
