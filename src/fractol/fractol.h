@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 17:29:15 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2022/09/03 01:09:42 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2024/03/16 23:32:45 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define FRACTOL_H
 
 # include <stddef.h>
+
+# include <semaphore.h>
+
+# include "mlx.h"
 
 # include "ft_types.h"
 # include "fto_disposable.h"
@@ -39,16 +43,6 @@ typedef struct s_fractol_pixel	(*t_fractol_options_get_pixel)(
 									t_fractol_options *options,
 									t_fractol_position position);
 
-typedef struct s_fractol
-{
-	void				*mlx_context;
-	void				*mlx_window;
-	void				*image;
-	t_fractol_options	*options;
-	t_fractol_position	center;
-	long double			size;
-}	t_fractol;
-
 typedef struct s_fractol_pixel
 {
 	long double	r;
@@ -63,6 +57,28 @@ typedef struct s_mlx_image
 	int				endian;
 	unsigned char	*data;
 }	t_mlx_image;
+
+typedef struct s_fractol_thread	t_fractol_thread;
+
+typedef struct s_fractol
+{
+	void				*mlx_context;
+	void				*mlx_window;
+	void				*image;
+	t_fractol_options	*options;
+	t_fractol_position	center;
+	long double			size;
+	t_fractol_thread	*threads;
+	sem_t				*semaphore;
+	t_mlx_image			img;
+}	t_fractol;
+
+struct s_fractol_thread
+{
+	t_fractol	*self;
+	size_t		y;
+	pthread_t	thread;
+};
 
 t_err				fractol_init_options(
 						t_fractol_options *out,
