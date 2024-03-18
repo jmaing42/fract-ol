@@ -6,7 +6,7 @@
 /*   By: Juyeong Maing <jmaing@student.42seoul.kr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/28 17:29:18 by Juyeong Maing     #+#    #+#             */
-/*   Updated: 2024/03/17 00:06:15 by Juyeong Maing    ###   ########.fr       */
+/*   Updated: 2024/03/18 22:51:17 by Juyeong Maing    ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,17 @@
 #include "ft_assert.h"
 
 #include "fractol_hooks.h"
+#include "ft_cpu_count.h"
 
 static t_err	init_threads(t_fractol_options *options, t_fractol *out)
 {
 	size_t	i;
+	int		cpu_count;
 
+	if (ft_cpu_count(&cpu_count))
+		return (true);
 	sem_unlink("");
-	out->semaphore = sem_open("", O_CREAT | O_EXCL, 0644, 8);
+	out->semaphore = sem_open("", O_CREAT | O_EXCL, 0644, cpu_count);
 	if (out->semaphore == SEM_FAILED)
 		return (true);
 	out->threads = malloc(sizeof(t_fractol_thread) * options->window_h);
